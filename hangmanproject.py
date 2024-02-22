@@ -9,15 +9,15 @@ def replace_letter(string, index, new_letter):
         return string 
     return string[:index] + new_letter + string[index + 1:]
 
-#A function that takes user input and checks whether it is just one character, written in lower case,
-#and is not a digit but a letter. If these conditions are not met, returns itself and takes new input until
+#A function that takes user input and checks whether it has the length of one character, it is written in lower case,
+#and is a letter. If these conditions are not met, returns itself and takes new input until
 #the user gives acceptable input.
-#If the user input matches a word that has already been guessed and is in the playerWord variable,
+#If the user input matches a letter that has already been guessed and is in the userWord variable,
 #informs the user and returns itself to take correct input.
 def get_user_input():
     user_input = input("Please enter a character: ")
     if len(user_input) == 1 and not user_input.isdigit() and user_input.islower():
-        if user_input in playerWord:
+        if user_input in userWord:
             print("You have guessed that already.")
             return get_user_input()
         else:
@@ -38,7 +38,7 @@ def get_user_input_quit():
         return get_user_input_quit()
 
 #Function draws the correct iteration of the gallows depending on
-#the amount of wrong guesses made by the player.
+#the amount of wrong guesses made by the user.
 def drawHangman(wrongGuess):
     match wrongGuess:
         case 0:
@@ -91,34 +91,32 @@ def drawHangman(wrongGuess):
             print("  |    / \\")
             print("__|___________")
         case _:
-            print("\nSomething went wrong.")
+            print("Something went wrong.")
 
 
 
 
 
-#This is the main loop that controls whether the player wants to play again after one game.
+#This is the main loop that controls whether the user wants to play again.
 while (True):
     #Every time a new game is started, a random word is chosen from the list.
     wordList = ["submarine", "marine", "biologist", "fire", "car", "university", "measure", "hygiene", "shop"]
     chosenWord = random.choice(wordList)
     
-
-    #A variable that stores the amount of right letters the player has guessed of the chosenWord.
+    #A variable that stores the amount of right letters the user has guessed of the chosenWord.
     rightLetters = 0
-    #A variable that store the amount of wrong letters the player has guessed.
+    #A variable that store the amount of wrong letters the user has guessed.
     wrongGuess = 0
-    #The wrong guesses are stored in this list and printed for the player to see later.
+    #The wrong guesses are stored in this list and printed for the user to see..
     wrongGuessedLetters = []
 
-    #print(chosenWord)
-    #A variable for the word that the player starts guessing.
-    playerWord=""
-    #This loop stores underscores into the playerWord variable.
+    #A variable that store the users guessed word.
+    userWord=""
+    #This loop stores underscores into the userWord variable.
     for letter in chosenWord:
-        playerWord += "_"
-    #This loop displays the length of the word to the player by printing the underscores.
-    for letter in playerWord:
+        userWord += "_"
+    #This loop displays the length of the word to the user by printing the underscores.
+    for letter in userWord:
         print(letter, end= " ")
 
     print("\n")
@@ -128,14 +126,24 @@ while (True):
     #The main gameplay loop which is exited when the user guesses the word, or has guessed six wrong letters.
     while (True):
         
-        #Here the player input is received.
+        #Here the function get_user_input() is called to receive correct input from the user,
+        #which is then stored in the variable guessedLetter.
         guessedLetter = get_user_input()     
         
+        #If-statement that checks whether the letter the user has given is in the chosenWord.
+        #If not, the guessed letter is checked against letters that have been guessed prior,
+        #and if there is no match, the letter is added to the wrongGuessedLetters list and 
+        #the counter for wrong guesses is incremented once.
         if guessedLetter in chosenWord:
             counter = 0
+            #This loop goes through checks the guessedLetter against the ChosenWord.
+            #When it finds a match, the replace_letter function is called and a new string
+            #with the new letter is created and stored in userWord. the rightLetters 
+            #counter is also incremented by one every time a new letter is added to the
+            #userWord.
             while counter < len(chosenWord):
                 if guessedLetter in chosenWord[counter]:
-                    playerWord = replace_letter(playerWord, counter, guessedLetter)
+                    userWord = replace_letter(userWord, counter, guessedLetter)
                     rightLetters += 1
                 counter += 1
         else:
@@ -144,33 +152,32 @@ while (True):
                 wrongGuessedLetters.append(guessedLetter)
                 wrongGuess += 1
         
+        #drawHangman function is called and a new gallows is drawn according to the amount of wrong guesses.
         drawHangman(wrongGuess)
 
-        for letter in playerWord:
+        #The userWord is now printed with possible new letters.
+        for letter in userWord:
             print(letter, end= " ")
         print(" ")
+        #Here the already guessed letters that are not in the word are displayed.
         print(f"Guessed letters: {wrongGuessedLetters}")
 
+        #These if statements are entered if the end of the game is reached, whether
+        #it is too many wrong guesses or the user having guessed the word, and then
+        #the main gameplay loop is broken out of.
         if wrongGuess >= 6:
             print("Too many wrong guesses. You lost.")
             break
+        #The while loop is broken out of if the amount of right letters guessed matches
+        #the length of the right word.
         if rightLetters == len(chosenWord):
             print("Good job, you guessed the word!")
             break  
-
+    #Here the user get_user_input_quit() function is called to receive either 'y'
+    # or 'n' from the user. If the user inputs 'n', the while-loop is exited and
+    # the game ends.
     choice = get_user_input_quit()
     if choice == "n":
         break
 
 print("Exiting.")
-
-
-
-#KEHITYS:
-#Pitäisikö lisätä valmiin sanan arvaus mukaan tähän versioon?
-#SQlite tietokanta jossa yksi taulu jossa vaikka sata sanaa?
-
-
-#Teen tämän perusversion nyt kuntoon, kommentoin sen ja siirrän githubiin.
-#Kun olen saanut sen tehtyä, teen uuden branchin ja rupean katsomaan ensin sqlite kantaa
-#Sitten graafista käyttöliittymää?
