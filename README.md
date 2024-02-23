@@ -15,7 +15,7 @@ while checking letters against words with if-statements. I feel that my understa
 and the instinct where to use them improved from before.
 
 
-planned features:
+Planned features:
 We studied SQLite on the course and my next goal is to integrate an SQlite database into it.
 I am planning to save a long list of words into the database which the program will then randomly
 draw from when the main gameplay loop starts, instead of a list of words that is in the source code.
