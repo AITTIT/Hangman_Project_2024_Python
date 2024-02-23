@@ -11,7 +11,7 @@ def replace_letter(string, index, new_letter):
 
 #A function that takes user input and checks whether it has the length of one character, it is written in lower case,
 #and is a letter. If these conditions are not met, returns itself and takes new input until
-#the user gives acceptable input.
+#the user gives acceptable input. 
 #If the user input matches a letter that has already been guessed and is in the userWord variable,
 #informs the user and returns itself to take correct input.
 def get_user_input():
