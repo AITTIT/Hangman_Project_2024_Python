@@ -180,3 +180,5 @@ while (True):
         break
 
 print("Exiting.")
+
+#Tämän pitäisi tulla SQLite branchiin.
