@@ -1,6 +1,19 @@
 import random
+import sqlite3
 
 random.seed()
+
+def getWordFromDatabase(): #Mitenköhän tämän tekisi järkevästi.
+    connection = sqlite3.connect("worddatabase.db")
+    randomID = random.randrange(2, 55)
+    cursor = connection.cursor()
+    cursor.execute(f"SELECT * FROM Words WHERE ID = {randomID}")
+    data = cursor.fetchall()
+
+    for record in data:
+        tempWord = record[1]
+    
+    return tempWord
 
 #A function that takes in a string, the index of the letter that is replaced, and the character that it is replaced with.
 def replace_letter(string, index, new_letter):
@@ -98,10 +111,10 @@ def drawHangman(wrongGuess):
 
 #This is the main loop that controls whether the user wants to play again.
 while (True):
-    #Every time a new game is started, a random word is chosen from the list.
-    wordList = ["submarine", "marine", "biologist", "fire", "car", "university", "measure", "hygiene", "shop"]
-    chosenWord = random.choice(wordList)
-    
+    #Every time a new game is started, getWordFromDatabase is called and a new random word is fetched.
+    chosenWord = getWordFromDatabase()
+    print(chosenWord)
+
     #A variable that stores the amount of right letters the user has guessed of the chosenWord.
     rightLetters = 0
     #A variable that stores the amount of wrong letters the user has guessed.
@@ -180,5 +193,3 @@ while (True):
         break
 
 print("Exiting.")
-
-#Tämän pitäisi tulla SQLite branchiin.
