@@ -96,7 +96,6 @@ def drawHangman(wrongGuess):
 
 
 
-
 #This is the main loop that controls whether the user wants to play again.
 while (True):
     #Every time a new game is started, a random word is chosen from the list.
@@ -105,12 +104,12 @@ while (True):
     
     #A variable that stores the amount of right letters the user has guessed of the chosenWord.
     rightLetters = 0
-    #A variable that store the amount of wrong letters the user has guessed.
+    #A variable that stores the amount of wrong letters the user has guessed.
     wrongGuess = 0
-    #The wrong guesses are stored in this list and printed for the user to see..
+    #The wrong guesses are stored in this list and printed for the user to see.
     wrongGuessedLetters = []
 
-    #A variable that store the users guessed word.
+    #A variable that stores the users guessed word.
     userWord=""
     #This loop stores underscores into the userWord variable.
     for letter in chosenWord:
