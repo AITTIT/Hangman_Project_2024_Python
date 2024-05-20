@@ -1,94 +1,21 @@
 import sqlite3
-
-#connection = sqlite3.connect("worddatabase.db")
-
-
-#connection.execute("""
-#DROP TABLE IF EXISTS Words;
-#""")
-
-#connection.commit()
-
-#connection.execute("""
-#CREATE TABLE Words
-#(ID INT PRIMARY KEY NOT NULL,
-#WORD TEXT NOT NULL
-#);
-#""")
-
-#connection.commit()
-
-#connection.close()
+import random
 
 
-#Tiedon lisääminen kantaan.
-#connection = sqlite3.connect("worddatabase.db")
+random.seed()
 
-#connection.execute("""
-#INSERT INTO Words (ID, WORD)
-#VALUES (1, "submarine");                  
-#""")
+def getWordFromDatabase():
+    """" Connects to the word database, picks a word at random, and returns it. """
+    connection = sqlite3.connect("worddatabase.db")
+    randomID = random.randrange(2, 55)
+    cursor = connection.cursor()
+    cursor.execute(f"SELECT * FROM Words WHERE ID = {randomID}")
+    data = cursor.fetchall()
 
-#connection.commit()
-
-#connection.close()
-
-#print("Add records END")
-
-#KOKEILE AUTOINCREMENTILLÄ
-
-#primaryKey = 2
-
-#connection = sqlite3.connect("worddatabase.db")
-#print("Add records")
-
-
-#connection.execute(f"""
-#INSERT INTO Words (ID, WORD)
-#VALUES ({primaryKey}, "marine");                  
-#""")
-
-#connection.commit()
-
-#connection.close()
-
-#print("Add records END")
-
-
-
-#connection = sqlite3.connect("worddatabase.db")
-
-
-#connection.execute("""
-#DROP TABLE IF EXISTS Words;
-#""")
-
-#connection.commit()
-
-#connection.execute("""
-#CREATE TABLE Words
-#(ID INTEGER PRIMARY KEY,
-#WORD TEXT NOT NULL
-#);
-#""")
-
-#connection.commit()
-
-#connection.execute("""
-#INSERT INTO Words (WORD)
-#VALUES ("marine");
-#""")
-
-#connection.execute("""
-#INSERT INTO Words (WORD)
-#VALUES ("marmelade");
-#""")
-
-#connection.commit()
-
-#connection.close()
-
-#print("It ran!")
+    for record in data:
+        tempWord = record[1]
+    
+    return tempWord
 
 def addWordtoDatabase(newWord):
     connection = sqlite3.connect("worddatabase.db")
@@ -147,15 +74,6 @@ def readOneRecord(id):
     
     connection.close()
 
-while(True):
-    addWordtoDatabase(database_input())
 
-
-
-
-#updateWordinDatabase(database_input())
-#DeleteWordFromDatabase()
-#listAllWords()
-#readOneRecord(2)
-
-#print("Ran.")
+if __name__ == "__main__":
+    listAllWords()
