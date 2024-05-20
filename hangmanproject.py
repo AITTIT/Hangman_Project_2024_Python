@@ -3,6 +3,8 @@ import sqlite3
 
 random.seed()
 
+#Siirrä hangman eri moduuliin. Voisiko getWordFromDatabase myös olla databasecreate moduulissa?
+
 def getWordFromDatabase():
     """" Connects to the word database, picks a word at random, and returns it. """
     connection = sqlite3.connect("worddatabase.db")
