@@ -159,32 +159,3 @@ while(True):
 #readOneRecord(2)
 
 #print("Ran.")
-
-
-    
-
-#Tähänkin rakennettava checkit millainen sana menee läpi.
-#Oma menu sanojen operoinnille. Yksi komento listaa kaikki sanat.
-"""
-def mainMenu():
-    print("HANGMAN")
-    print("1 PLAY THE GAME")
-    print("2 ACCESS AND MODIFY THE DATABASE OF WORDS")
-    print("0 EXIT")
-    
-    while(True):
-        user_input = input("Choose action ")
-        if user_input.isdigit():
-            user_input = int(user_input)
-        if user_input == 1:
-            print("Option 1")
-            break
-        elif user_input == 2:
-            print("Option 2")
-            break
-        elif user_input == 0:
-            print("Option 0")
-            break
-        else:
-            print("Please enter 1, 2 or 0.")
-"""

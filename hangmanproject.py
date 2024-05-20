@@ -3,7 +3,8 @@ import sqlite3
 
 random.seed()
 
-def getWordFromDatabase(): #Mitenköhän tämän tekisi järkevästi.
+def getWordFromDatabase():
+    """" Connects to the word database, picks a word at random, and returns it. """
     connection = sqlite3.connect("worddatabase.db")
     randomID = random.randrange(2, 55)
     cursor = connection.cursor()
@@ -15,19 +16,20 @@ def getWordFromDatabase(): #Mitenköhän tämän tekisi järkevästi.
     
     return tempWord
 
-#A function that takes in a string, the index of the letter that is replaced, and the character that it is replaced with.
 def replace_letter(string, index, new_letter):
-    #A condition that returns the original string if index is out of range
+    """ A function that takes in a string, the index of the letter that is replaced, and the character that it is replaced with."""
+    # A condition that returns the original string if index is out of range
     if index < 0 or index >= len(string):
         return string 
     return string[:index] + new_letter + string[index + 1:]
 
-#A function that takes user input and checks whether it has the length of one character, it is written in lower case,
-#and is a letter. If these conditions are not met, returns itself and takes new input until
-#the user gives acceptable input. 
-#If the user input matches a letter that has already been guessed and is in the userWord variable,
-#informs the user and returns itself to take correct input.
+
 def get_user_input():
+    """ A function that takes user input and checks whether it has the length of one character, it is written in lower case,
+    and is a letter. If these conditions are not met, returns itself and takes new input until
+    the user gives acceptable input. 
+    If the user input matches a letter that has already been guessed and is in the userWord variable,
+    informs the user and returns itself to take correct input. """
     user_input = input("Please enter a character: ")
     if len(user_input) == 1 and not user_input.isdigit() and user_input.islower():
         if user_input in userWord:
@@ -40,9 +42,9 @@ def get_user_input():
         return get_user_input()
     
 
-#Another function that takes user input. The function only accepts 'y' or 'n' as input.
-#If the input is something else, instructs the user to give 'y' or 'n', and returns itself.
 def get_user_input_quit():
+    """ Another function that takes user input. The function only accepts 'y' or 'n' as input.
+    If the input is something else, instructs the user to give 'y' or 'n', and returns itself. """
     user_input = input("Do you want to play again? (y/n) ")
     if user_input == "y" or user_input == "n":
         return user_input
@@ -50,9 +52,10 @@ def get_user_input_quit():
         print("Invalid input. Please enter 'y' for yes and 'n' or no.")
         return get_user_input_quit()
 
-#Function draws the correct iteration of the gallows depending on
-#the amount of wrong guesses made by the user.
+
 def drawHangman(wrongGuess):
+    """ Function draws the correct iteration of the gallows depending on
+    the amount of wrong guesses made by the user. """
     match wrongGuess:
         case 0:
             print("   _____")
