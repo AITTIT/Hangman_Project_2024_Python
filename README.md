@@ -16,6 +16,8 @@ and the instinct where to use them improved from before.
 
 The program uses an sqlite database to access a database of words to guess.
 
+![Screenshot of the game](Pictures/HangmanPic.PNG)
+
 ### **EDIT 2026**
 
 Looking at my code nearly two years later, I felt the natural urge to delete the whole project, but since at the moment it is the single larger Python program I can showcase, I decided to keep it. I also did not want to start editing the whole program to a greater extent at this point.
