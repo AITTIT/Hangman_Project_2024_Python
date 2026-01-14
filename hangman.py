@@ -1,15 +1,13 @@
-import random
 from databasecreate import getWordFromDatabase
 from hangmanDraw import drawHangman
-
-random.seed()
 
 
 def replace_letter(string, index, new_letter):
     """ A function that takes in a string, the index of the letter that is replaced, and the character that it is replaced with."""
-    # A condition that returns the original string if index is out of range
+    # Return original string if index out of range
     if index < 0 or index >= len(string):
         return string 
+    
     return string[:index] + new_letter + string[index + 1:]
 
 
@@ -42,12 +40,10 @@ def get_user_input_quit():
 
 
 
-# The main loop that controls whether the user wants to play again.
+# The main loop
 while (True):
     # Every time a new game is started, getWordFromDatabase is called and a new random word is fetched.
     chosenWord = getWordFromDatabase()
-    
-    #print(chosenWord)
 
     # Variable that stores the amount of right letters the user has guessed of the chosenWord.
     rightLetters = 0
@@ -58,8 +54,8 @@ while (True):
     # The wrong guesses are stored in this list and printed for the user to see.
     wrongGuessedLetters = []
 
-    # A variable that stores the users guessed word.
-    userWord=""
+    # A variable that stores the user's guessed word.
+    userWord = ""
 
     # This loop stores underscores into the userWord variable.
     for letter in chosenWord:

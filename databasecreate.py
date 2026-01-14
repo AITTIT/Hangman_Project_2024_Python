@@ -1,9 +1,6 @@
 import sqlite3
 import random
 
-
-random.seed()
-
 def getWordFromDatabase():
     """" Connects to the word database, picks a word at random, and returns it. """
     connection = sqlite3.connect("worddatabase.db")
