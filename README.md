@@ -20,7 +20,7 @@ The program uses an sqlite database to access a database of words to guess.
 
 ### **EDIT 2026**
 
-Looking at my code nearly two years later, I felt the natural urge to delete the whole project, but since at the moment it is the single larger Python program I can showcase, I decided to keep it. I also did not want to start editing the whole program to a greater extent at this point.
+Looking at my code nearly two years later, I felt the natural urge to delete the whole project, but since at the moment it is the single larger Python program I can showcase that I wrote wholly by myself, I decided to keep it. I also did not want to start editing the whole program to a greater extent at this point.
 
 A few notes on the code: 
 - I felt there was some rationale behind how I split code into functions. The code should have been split even more, and some functions probably do too much, but some of it was adequate.
